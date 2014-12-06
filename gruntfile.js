@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         ts: {
             default: {
-                src: ['src/*.ts', '!src/.*.ts'],
+                src: ['src/*.ts', '!src/*.d.ts', '!src/.*.ts'],
                 outDir: 'build/',
                 options: {
                     declaration: false,
