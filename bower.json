@@ -25,6 +25,7 @@
     "tests"
   ],
   "devDependencies": {
-    "DefinitelyTyped": "*"
+    "DefinitelyTyped": "*",
+    "jquery": "~2.1.1"
   }
 }

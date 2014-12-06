@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         ts: {
             default: {
                 src: ['src/*.ts', '!src/*.d.ts', '!src/.*.ts'],
-                outDir: 'build/',
+                outDir: 'dist/',
                 options: {
                     declaration: false,
                     target: 'es5',
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         uglify: {
             default: {
                 files: {
-                    'build/jquery.fadebyscroll.min.js': ['build/jquery.fadebyscroll.js']
+                    'dist/jquery.fadebyscroll.min.js': ['dist/jquery.fadebyscroll.js']
                 }
             }
         }
