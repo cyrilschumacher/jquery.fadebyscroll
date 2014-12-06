@@ -3,23 +3,30 @@ JQuery plugin which applies a fade effect on an element according to the scroll 
 
 ## Getting Started
 ### Software requirements
-This project requires :
+This project requires:
 
 + [Node.js](http://nodejs.org/)
 
 ### Grunt dependencies
 For install Node.js dependencies, you must enter the following command from favorite terminal:
-
-    npm install
+> `npm install`
 
 This command will install [Grunt](http://gruntjs.com/) with dependencies.
     
 ### Bower dependencies
 After installing Node.js dependencies, you can get [Bower](http://bower.io/) dependencies by entering the following command:
+> `bower install`
+    
+### How to build 
+To create a Javascript version of the plugin, enter the following command (after installing the dependencies):
+> `build`
 
-    bower install
+## Usage
+Before start, get sources from:
 
-### How use ?
++ [Download the latest release](https://github.com/cyrilschumacher/jquery.fadebyscroll/releases).
++ Install with [Bower](http://bower.io/).
+
 Basic: 
 > `$('#my-element').fadeOnScroll(25);`
 
