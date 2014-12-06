@@ -19,10 +19,17 @@ After installing Node.js dependencies, you can get [Bower](http://bower.io/) dep
 
     bower install
 
+### How use ?
+Basic: 
+> `$('#my-element').fadeOnScroll(25);`
+
+Advanced:
+> `$('#my-element').fadeOnScroll(25, {opacityMin: 50});`
+
 ## Copyright and license
 > The MIT License (MIT)
 > 
-> Copyright (c) 2014 Cyril Schumacher.fr
+> Copyright (c) 2014 Cyril Schumacher
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

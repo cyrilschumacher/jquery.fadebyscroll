@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  * 
- * Copyright (c) 2014 Cyril Schumacher.fr
+ * Copyright (c) 2014 Cyril Schumacher
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,36 +21,66 @@
  * SOFTWARE.
  */
 
+/// <reference path="../bower_components/DefinitelyTyped/jquery/jquery.d.ts"/>
 /// <reference path="jquery.fadebyscroll.d.ts"/>
 
-import $ = require('jquery');
-
 /**
- * @summary Apply an opacity on the content of an element after exceeding a limit.
- * @param {number}              percentage   Percentage to which the animation is running.
- * @param {FadeByScrollOptions} options      Options.
+ * @summary JQuery plugin which applies a fade effect on an element according to the scroll position
+ * @class
  */
-$.fn.fadeByScroll = function(percentage: number, options: FadeByScrollOptions) {
+class FadeByScroll {
     'use strict';
-    
-    // Create settings with default value.
-    var settings: FadeByScrollOptions = $.extend({ opacityMin: 0, opacityMax: 1, element: this.find('*') }, options);
 
-    // Opacity value by default.
-    var opacity: number = settings.opacityMax;
-
-    // Obtains the position of scroll and
-    // computes the position compared to position of scroll.
-    var scrollPosition: number = $(window).scrollTop();
-    var positionByScroll: number = (this.height() * percentage) / 100;
-
-    // If the position of scroll exceeds the position, we update the opacity.
-    if (scrollPosition >= positionByScroll) {
-        opacity = 1 - ((scrollPosition - positionByScroll) / positionByScroll);
+    /**
+     * @summary Create a plugin instance.
+     * @public
+     * @param   {JQuery}                percentage  Percentage to which the animation is running.
+     * @param   {FadeByScrollOptions}   options     Options.
+     * @return  {object}                            Object that was iterated.
+     */
+    public static fadeByScroll(percentage: number, options: FadeByScrollOptions): Object {
+        var element: JQuery = <JQuery>this;
+        return element.each(() => {
+            new FadeByScroll(element, percentage, options);
+        });
     }
 
-    // Checks if it doesn't exceeds the minimum and maximum opacity value.
-    opacity = Math.min(Math.max(opacity, settings.opacityMin), settings.opacityMax);
-    // Sets the opacity.
-    settings.element.css('opacity', opacity);
+    /**
+     * @summary Constructor.
+     * @constructor
+     * @public
+     * @param {JQuery}              _element     Element.
+     * @param {number}              _percentage  Percentage to which the animation is running.
+     * @param {FadeByScrollOptions} _options     Options.
+     */
+    public constructor(private _element: JQuery, private _percentage: number, private _options: FadeByScrollOptions) {
+        this._options = $.extend({ opacityMin: 0, opacityMax: 1, element: this._element.find('*') }, this._options);
+        $(window).scroll(this._onScroll);
+    }
+
+    /**
+     * @summary Specifies the function to be called when the window is scrolled.
+     * @private
+     */
+    private _onScroll = (): void => {
+        // Opacity value by default.
+        var opacity: number = this._options.opacityMax;
+
+        // Obtains the position of scroll and
+        // computes the position compared to position of scroll.
+        var scrollPosition: number = $(window).scrollTop();
+        var positionByScroll: number = (this._element.height() * this._percentage) / 100;
+
+        // If the position of scroll exceeds the position, we update the opacity.
+        if (scrollPosition >= positionByScroll) {
+            opacity = 1 - ((scrollPosition - positionByScroll) / positionByScroll);
+        }
+
+        // Checks if it doesn't exceeds the minimum and maximum opacity value.
+        opacity = Math.min(Math.max(opacity, this._options.opacityMin), this._options.opacityMax);
+        // Sets the opacity.
+        this._options.element.css('opacity', opacity);
+    }
 }
+
+$.fn.fadeByScroll = FadeByScroll.fadeByScroll;

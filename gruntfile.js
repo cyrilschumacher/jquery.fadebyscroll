@@ -26,8 +26,8 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         ts: {
-            dev: {
-                src: ['src/*.ts'],
+            default: {
+                src: ['src/*.ts', '!src/.*.ts'],
                 outDir: 'build/',
                 options: {
                     declaration: false,
@@ -36,9 +36,17 @@ module.exports = function (grunt) {
                     sourceMap: false
                 }
             }
+        },
+        uglify: {
+            default: {
+                files: {
+                    'build/jquery.fadebyscroll.min.js': ['build/jquery.fadebyscroll.js']
+                }
+            }
         }
     });
-
+    
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-ts');
-    grunt.registerTask('default', ['ts:dev']);
+    grunt.registerTask('default', ['ts', 'uglify']);
 };

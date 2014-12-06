@@ -1,6 +1,6 @@
 /* The MIT License (MIT)
  * 
- * Copyright (c) 2014 Cyril Schumacher.fr
+ * Copyright (c) 2014 Cyril Schumacher
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,12 @@
  */
 interface JQueryStatic {
     /**
-     * @summary Apply an opacity on the content of an element after exceeding a limit.
-     * @param   {number} percentage   Percentage to which the animation is running.
-     * @param   {Object} options      Options.
+     * @summary Create a plugin instance.
+     * @param   {JQuery}                percentage  Percentage to which the animation is running.
+     * @param   {FadeByScrollOptions}   options     Options.
+     * @return  {object}                            Object that was iterated.
      */
-    fadeByScroll(percentage: number, options: FadeByScrollOptions): void;
+    fadeByScroll(percentage: number, options: FadeByScrollOptions): Object;
 }
 
 /**
